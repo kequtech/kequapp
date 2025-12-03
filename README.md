@@ -6,9 +6,9 @@
 
 *\ \`hek-yü-ap \\*
 
-[![npm version](https://img.shields.io/npm/v/@kequtech/kequapp?color=2e7dd7)](https://www.npmjs.com/package/kequapp)
-[![Node Version](https://img.shields.io/node/v/@kequtech/kequapp?color=2e7dd7)](#installation)
-[![License](https://img.shields.io/npm/l/@kequtech/kequapp?color=2e7dd7)](./LICENSE)
+[![npm version](https://img.shields.io/npm/v/%40kequtech/kequapp?color=2e7dd7)](https://www.npmjs.com/package/kequapp)
+[![Node Version](https://img.shields.io/node/v/%40kequtech/kequapp?color=2e7dd7)](#installation)
+[![License](https://img.shields.io/npm/l/%40kequtech/kequapp?color=2e7dd7)](./LICENSE)
 
 ---
 ### Why Kequapp?
