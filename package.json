@@ -1,5 +1,5 @@
 {
-    "name": "@kequtech/kequapp",
+    "name": "kequapp",
     "version": "0.13.5",
     "description": "A minimal, zero-magic Node web framework built on native APIs",
     "type": "module",

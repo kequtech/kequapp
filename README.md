@@ -1,4 +1,4 @@
-<img alt="kequapp" src="https://github.com/kequtech/kequapp/blob/main/logo.png?raw=true" width="370" height="95" />
+<img alt="kequapp" src="https://github.com/Kequc/kequapp/blob/main/logo.png?raw=true" width="370" height="95" />
 
 # Kequapp
 
@@ -6,9 +6,14 @@
 
 *\ \`hek-yü-ap \\*
 
-[![npm version](https://img.shields.io/npm/v/@kequtech/kequapp?color=2e7dd7)](https://www.npmjs.com/package/kequapp)
-[![Node Version](https://img.shields.io/node/v/@kequtech/kequapp?color=2e7dd7)](#installation)
-[![License](https://img.shields.io/npm/l/@kequtech/kequapp?color=2e7dd7)](./LICENSE)
+[![npm version](https://img.shields.io/npm/v/kequapp?color=2e7dd7)](https://www.npmjs.com/package/kequapp)
+[![Node Version](https://img.shields.io/node/v/kequapp?color=2e7dd7)](#installation)
+[![License](https://img.shields.io/npm/l/kequapp?color=2e7dd7)](./LICENSE)
+
+---
+### We've Moved
+
+The package has been renamed to `@kequtech/kequapp` and moved to the `Kequtech` organization on npm. Please update your dependencies accordingly. [NPM @kequtech/kequapp](https://www.npmjs.com/package/@kequtech/kequapp)
 
 ---
 ### Why Kequapp?
@@ -41,7 +46,7 @@ Kequapp emphasizes *clarity* and *explicit control* with a minimal surface area:
 ### Installation
 
 ```bash
-npm install @kequtech/kequapp
+npm install kequapp
 ```
 
 * **Node:** Current, modern Node is expected above 20.
@@ -53,7 +58,7 @@ npm install @kequtech/kequapp
 
 ```js
 import { createServer } from 'node:http';
-import { createApp } from '@kequtech/kequapp';
+import { createApp } from 'kequapp';
 
 const app = createApp({
   routes: [
@@ -75,7 +80,7 @@ Returning the string triggers a renderer selected by the current `Content-Type`.
 To emit JSON instead, set the header in the *actions* before returning a value:
 
 ```js
-import { createApp, createBranch, createAction } from '@kequtech/kequapp';
+import { createApp, createBranch, createAction } from 'kequapp';
 
 const actionSetHeaderJson = createAction(({ res }) => {
   res.setHeader('Content-Type', 'application/json');
