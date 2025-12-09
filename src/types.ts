@@ -8,7 +8,9 @@ export interface Logger {
     info: LoggerFn;
 }
 
-export type Action = (bundle: Bundle) => Promise<unknown> | unknown;
+export type Action<T extends BundleContext = BundleContext> = (
+    bundle: Bundle<T>,
+) => Promise<unknown> | unknown;
 export type Renderer = (payload: unknown, bundle: Bundle) => Promise<void> | void;
 export type ErrorHandler = (ex: ServerEx, bundle: Bundle) => Promise<unknown> | unknown;
 
@@ -18,11 +20,11 @@ export type Header = string | number | string[] | undefined;
 export type Headers = Record<string, Header>;
 export type Params = Record<string, string>;
 
-export interface Bundle {
+export interface Bundle<T extends BundleContext = BundleContext> {
     req: IncomingMessage;
     res: ServerResponse;
     url: URL;
-    context: BundleContext;
+    context: T;
     params: Params;
     methods: string[];
     cookies: Cookies;

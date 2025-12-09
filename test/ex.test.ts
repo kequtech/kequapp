@@ -44,12 +44,14 @@ it('allows creation of custom known errors', () => {
 });
 
 it('normalizes Error cause into an object', () => {
-    const ex = Ex.InternalServerError(undefined, { cause: new Error('details') });
+    const ex = Ex.InternalServerError(undefined, {
+        cause: new Error('details', { cause: new Error('hi') }),
+    });
 
     assert.deepEqual(ex.cause, {
         name: 'Error',
         message: 'details',
-        cause: undefined,
+        cause: { name: 'Error', message: 'hi', cause: undefined },
     });
 });
 

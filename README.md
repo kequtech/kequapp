@@ -47,7 +47,7 @@ Run with any HTTP server that can accept a Node request listener:
 
 ```ts
 import { createServer } from "node:http";
-import app from "./app";
+import app from "./app.ts";
 
 createServer(app).listen(3000);
 ```

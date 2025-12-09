@@ -10,7 +10,15 @@ Pre‑1.0: minor versions may include breaking changes.
 
 **Security** Errors used as `cause` on errors (`Ex.NotFound(undefined, { cause: new Error() });`) have stack trace removed. Reducing the chance that it is accidentally sent to a client. You can cause: cause: cause: all the way down they'll contain `message`, `name`, `cause`. This is true for all errors placed anywhere within a `ServerEx`.
 
-**Added** New `createTestBundle` method to create a testable instance of an arbor bundle. This enables easier direct unit testing of actions.
+**Added** New `createTestBundle` method to create a testable instance of an Arbor bundle. This enables easier direct unit testing of actions.
+
+**Added** Context hints for `createAction` to define what context properties are available within the action. This does not guarantee they exist at runtime, but provides a hint as to what's in there.
+
+```ts
+const action = createAction<{ user: UserType }>(({ context }) => {
+    context.user // UserType
+});
+```
 
 **Added** New DOCUMENTATION hallelujah! https://docs.kequtech.com/arbor/
 
