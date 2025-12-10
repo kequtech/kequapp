@@ -95,7 +95,7 @@ export function normalizeBody(body: BodyJson, options: GetBodyOptions): BodyJson
         // old school
         if (!key) return result;
         throw Ex.UnprocessableEntity(`Value ${key} ${errors[key]}`, {
-            errors,
+            cause: errors,
             body,
         });
     } else {

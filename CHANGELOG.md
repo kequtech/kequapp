@@ -2,6 +2,10 @@
 
 Pre‑1.0: minor versions may include breaking changes.
 
+# 0.14.2 - 2025-12-10
+
+**Added** `getBody` includes errors inside `ex.cause` when validation fails and `throws` is `true` (default behavior). This means also that with the default error handler validation errors are included in the response sent to the client. This reduces the need for a `throws: false` option.
+
 # 0.14.0 - 2025-12-08
 
 **Breaking** Entire project has been moved and renamed. This package is now `@kequtech/arbor` not `kequapp` on npm. All imports will need to be updated. The repository itself has also been moved to `@kequtech/arbor` on GitHub.
