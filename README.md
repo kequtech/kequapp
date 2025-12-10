@@ -61,7 +61,7 @@ Open:
 
 Full documentation is available at:
 
-**[https://docs.kequtech.com/arbor](https://docs.kequtech.com/arbor)**
+**[https://docs.kequtech.com/arbor/](https://docs.kequtech.com/arbor/)**
 
 It includes:
 
