@@ -2,48 +2,20 @@ import type { Params } from '../types.ts';
 
 export function headerAttributes(header = ''): Params {
     const result: Params = {};
-
-    let inQuotes = false;
-    let isAssignment = false;
-    let key = '';
-    let value = '';
-
-    function reset() {
-        inQuotes = false;
-        isAssignment = false;
-        key = '';
-        value = '';
-    }
-
-    for (let i = 0; i < header.length; i++) {
-        if (header[i] === '"') {
-            inQuotes = !inQuotes;
-            if (!inQuotes && isAssignment) {
-                result[key] = value;
-                reset();
-            }
-            continue;
+    if (!header) return result;
+    const parts = header.split(';');
+    for (const part of parts) {
+        const trimmed = part.trim();
+        if (!trimmed) continue;
+        const eq = trimmed.indexOf('=');
+        if (eq === -1) continue; // skip things like "multipart/form-data" or "form-data"
+        const key = trimmed.slice(0, eq).trim();
+        if (!key) continue;
+        let value = trimmed.slice(eq + 1).trim();
+        if (value.startsWith('"') && value.endsWith('"') && value.length >= 2) {
+            value = value.slice(1, -1);
         }
-        if (/[?:;|, ]/.test(header[i]) && !inQuotes) {
-            if (isAssignment) result[key] = value;
-            reset();
-            continue;
-        }
-        if (header[i] === '=' && !inQuotes) {
-            isAssignment = true;
-            continue;
-        }
-        if (isAssignment) {
-            value += header[i];
-            continue;
-        }
-
-        key += header[i];
-    }
-
-    if (isAssignment && !inQuotes) {
         result[key] = value;
     }
-
     return result;
 }
