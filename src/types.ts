@@ -8,7 +8,7 @@ export interface Logger {
     info: LoggerFn;
 }
 
-export type Action<T extends BundleContext = BundleContext> = (
+export type Action<T extends Record<string, unknown> = {}> = (
     bundle: Bundle<T>,
 ) => Promise<unknown> | unknown;
 export type Renderer = (payload: unknown, bundle: Bundle) => Promise<void> | void;
@@ -20,19 +20,15 @@ export type Header = string | number | string[] | undefined;
 export type Headers = Record<string, Header>;
 export type Params = Record<string, string>;
 
-export interface Bundle<T extends BundleContext = BundleContext> {
+export interface Bundle<T extends Record<string, unknown> = {}> {
     req: IncomingMessage;
     res: ServerResponse;
     url: URL;
-    context: T;
+    context: T & Record<string, unknown>;
     params: Params;
     methods: string[];
     cookies: Cookies;
     getBody: GetBody;
-}
-
-export interface BundleContext {
-    [k: string]: unknown;
 }
 
 export interface CookieOptions {
@@ -99,7 +95,7 @@ export interface ReqOptions extends Record<string, any> {
 
 export interface TestBundleOptions extends ReqOptions {
     params?: Record<string, string>;
-    context?: BundleContext;
+    context?: Record<string, unknown>;
 }
 
 export interface GetResponseOptions {

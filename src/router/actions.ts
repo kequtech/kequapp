@@ -47,8 +47,12 @@ export async function renderError(
 
     await finalize(renderers, bundle, payload);
 
-    if (res.statusCode === 500) {
-        logger.error(error);
+    if (res.statusCode >= 500) {
+        if (ex.info && Object.keys(ex.info).length > 0) {
+            logger.error(error, ex.info);
+        } else {
+            logger.error(error);
+        }
     }
 }
 
