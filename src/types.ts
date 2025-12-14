@@ -8,7 +8,7 @@ export interface Logger {
     info: LoggerFn;
 }
 
-export type Action<T extends Record<string, unknown> = {}> = (
+export type Action<T extends BundleContext = {}> = (
     bundle: Bundle<T>,
 ) => Promise<unknown> | unknown;
 export type Renderer = (payload: unknown, bundle: Bundle) => Promise<void> | void;
@@ -19,12 +19,13 @@ export type PathnameWild = Pathname & `${string}/**`;
 export type Header = string | number | string[] | undefined;
 export type Headers = Record<string, Header>;
 export type Params = Record<string, string>;
+export type BundleContext = Record<string, unknown>;
 
-export interface Bundle<T extends Record<string, unknown> = {}> {
+export interface Bundle<T extends BundleContext = {}> {
     req: IncomingMessage;
     res: ServerResponse;
     url: URL;
-    context: T & Record<string, unknown>;
+    context: Partial<T> & BundleContext;
     params: Params;
     methods: string[];
     cookies: Cookies;

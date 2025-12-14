@@ -2,7 +2,7 @@
 
 Pre‑1.0: minor versions may include breaking changes.
 
-# 0.14.4 - 2025-12-14
+# 0.14.5 - 2025-12-14
 
 **Removed:** Stack trace and info are no longer output in the default error handler regardless of environment. This was too opinionated about having a `NODE_ENV` variable set and introduced security concerns. If you want to log stack traces or error info, create a custom error handler that does so.
 

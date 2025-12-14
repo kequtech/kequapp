@@ -9,7 +9,7 @@ import {
 
 const PRIVATE = ['/private.txt'];
 
-const setupAssets = createAction(({ params, context }) => {
+const setupAssets = createAction(({ params }) => {
     if (PRIVATE.includes(params.wild)) {
         throw Ex.NotFound();
     }

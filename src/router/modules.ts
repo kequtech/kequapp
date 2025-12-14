@@ -1,5 +1,12 @@
 import type { IncomingMessage, RequestListener, ServerResponse } from 'node:http';
-import type { Action, BranchData, ErrorHandlerData, RendererData, RouteData } from '../types.ts';
+import type {
+    Action,
+    BranchData,
+    BundleContext,
+    ErrorHandlerData,
+    RendererData,
+    RouteData,
+} from '../types.ts';
 import {
     validateBranch,
     validateErrorHandler,
@@ -28,7 +35,7 @@ export function createRoute(data: RouteData): RouteData {
     return data;
 }
 
-export function createAction<T extends Record<string, unknown> = {}>(action: Action<T>): Action<T> {
+export function createAction<T extends BundleContext = {}>(action: Action<T>): Action<T> {
     validateExists(action, 'Action');
     validateType(action, 'Action', 'function');
     return action;
