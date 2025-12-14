@@ -2,6 +2,14 @@
 
 Pre‑1.0: minor versions may include breaking changes.
 
+# 0.14.4 - 2025-12-14
+
+**Removed:** Stack trace and info are no longer output in the default error handler regardless of environment. This was too opinionated about having a `NODE_ENV` variable set and introduced security concerns. If you want to log stack traces or error info, create a custom error handler that does so.
+
+**Fixed:** `createAction` was not accepting basic context interfaces and types when provided, due to a missed definition when this feature was added.
+
+**Added:** Errors logged by the framework (outside of error handlers) now include error info when provided. When you throw an error with extra info it will be logged after the stack trace. All `5xx` errors trigger an error log, previously it was only `500` errors.
+
 # 0.14.2 - 2025-12-10
 
 **Added** `getBody` includes errors inside `ex.cause` when validation fails and `throws` is `true` (default behavior). This means also that with the default error handler validation errors are included in the response sent to the client. This reduces the need for a `throws: false` option.

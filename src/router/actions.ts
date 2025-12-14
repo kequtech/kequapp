@@ -48,8 +48,10 @@ export async function renderError(
     await finalize(renderers, bundle, payload);
 
     if (res.statusCode >= 500) {
-        if (ex.info && Object.keys(ex.info).length > 0) {
-            logger.error(error, ex.info);
+        const info = { ...ex.info };
+        if (ex.cause) info.cause = ex.cause;
+        if (info && Object.keys(info).length > 0) {
+            logger.error(error, info);
         } else {
             logger.error(error);
         }
