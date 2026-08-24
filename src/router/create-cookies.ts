@@ -60,12 +60,20 @@ function parseCookieHeader(cookie?: string): Params {
             const key = i >= 0 ? part.slice(0, i).trim() : part.trim();
             const value = i >= 0 ? part.slice(i + 1).trim() : '';
             if (key) {
-                result[key] = decodeURIComponent(value);
+                result[key] = decodeCookieValue(value);
             }
         }
     }
 
     return result;
+}
+
+function decodeCookieValue(value: string): string {
+    try {
+        return decodeURIComponent(value);
+    } catch {
+        return value;
+    }
 }
 
 function validateCookieName(name: string): void {

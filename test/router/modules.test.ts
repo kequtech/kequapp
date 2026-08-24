@@ -55,6 +55,48 @@ describe('createApp', () => {
         assert.equal(result, 'GET');
     });
 
+    it('handles requests with malformed cookie values', async () => {
+        const app = createApp({
+            logger: silentLogger,
+            routes: [
+                {
+                    method: 'GET',
+                    actions: [({ cookies }) => cookies.get('admin') ?? 'guest'],
+                },
+            ],
+        });
+
+        const { res, getResponse } = inject(app, {
+            url: '/',
+            headers: { Cookie: 'admin=%E0%A4%A' },
+        });
+        const result = await getResponse();
+
+        assert.equal(res.statusCode, 200);
+        assert.equal(result, '%E0%A4%A');
+    });
+
+    it('handles malformed cookies without losing valid cookies', async () => {
+        const app = createApp({
+            logger: silentLogger,
+            routes: [
+                {
+                    method: 'GET',
+                    actions: [({ cookies }) => cookies.get('admin') ?? 'guest'],
+                },
+            ],
+        });
+
+        const { res, getResponse } = inject(app, {
+            url: '/',
+            headers: { Cookie: 'other=%; admin=authenticated' },
+        });
+        const result = await getResponse();
+
+        assert.equal(res.statusCode, 200);
+        assert.equal(result, 'authenticated');
+    });
+
     it('renders head routes', async () => {
         const app = createApp({
             logger: silentLogger,
